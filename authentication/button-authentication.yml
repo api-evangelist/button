@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/button-billing-api-openapi.json, openapi/button-brands-api-openapi.json, openapi/button-links-api-openapi.json,
+  openapi/button-offers-api-openapi.json, openapi/button-shortlink-api-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: sec0
+  type: http
+  scheme: basic
+  sources:
+  - openapi/button-billing-api-openapi.json
+  - openapi/button-brands-api-openapi.json
+  - openapi/button-links-api-openapi.json
+  - openapi/button-offers-api-openapi.json
+  - openapi/button-shortlink-api-openapi.json
