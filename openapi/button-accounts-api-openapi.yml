@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: billing-api Accounts API
+  version: '4'
+  description: Retrieve billing accounts and affiliate commission transactions across currencies.
+servers:
+- url: https://api.usebutton.com/v1/affiliation
+security:
+- sec0: []
+tags:
+- name: Accounts
+paths:
+  /accounts:
+    get:
+      summary: List Accounts
+      description: Retrieve the list of billing accounts associated with your organization. Your organization will have one billing account per supported currency.
+      operationId: list-accounts
+      responses:
+        '200':
+          $ref: '#/components/responses/AccountsOK'
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/affiliation/accounts \\\n  -X GET \\\n  -u YOUR_API_KEY:"
+        samples-languages:
+        - curl
+      tags:
+      - Accounts
+  /accounts/{account_id}/transactions:
+    parameters:
+    - name: account_id
+      in: path
+      description: The specific account (currency) to query.
+      required: true
+      schema:
+        type: string
+    get:
+      summary: List Transactions by Account (Single Currency)
+      description: Retrieve a list of transactions within a single billing account (single currency).
+      operationId: list-transactions
+      parameters:
+      - name: cursor
+        in: query
+        description: An opaque string that lets you view a consistent list of transactions.
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: 'Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: 'Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: time_field
+        in: query
+        description: Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default.
+        schema:
+          type: string
+          enum:
+          - created_date
+          - modified_date
+          - attribution_date
+      - name: page_size
+        in: query
+        description: Number of transaction to retrieve in each request. When not specified, 50 is used as default.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: country
+        in: query
+        description: 'Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US'
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/TransactionsByAccountOK'
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/affiliation/accounts/acc-XXX/transactions?start=2024-01-01T00:00:00Z&end=2024-01-05T00:00:00Z \\\n  -X GET \\\n  -u YOUR_API_KEY:"
+        samples-languages:
+        - curl
+      tags:
+      - Accounts
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
