@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/ 4xx/5xx responses
+format: custom
+envelope:
+  description: Button responses wrap payloads in a top-level object; errors carry a meta.status
+    other than "ok". Successful responses use {"meta":{"status":"ok"}, "object"|"objects":...}.
+  status_field: meta.status
+problems:
+- status: 400
+  title: Bad Request
+  meaning: The request was malformed or a required parameter was missing/invalid.
+  source_operations:
+  - openapi/button-brands-api-openapi.json#list-brand-details
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid API key (HTTP basic credential).
+  source_operations:
+  - openapi/button-brands-api-openapi.json#list-brand-details
+  - openapi/button-links-api-openapi.json#generate-a-link
+  - openapi/button-shortlink-api-openapi.json#generate-a-brand-shortlink
+  - openapi/button-shortlink-api-openapi.json#generate-a-shortlink
+- status: 403
+  title: Forbidden
+  meaning: The authenticated organization is not permitted for this operation (e.g. not on the
+    required allowlist).
+  source_operations:
+  - openapi/button-links-api-openapi.json#generate-a-link
+- status: 404
+  title: Not Found
+  meaning: The requested resource (brand, account, or target) does not exist or is not visible
+    to the API key.
+  source_operations:
+  - openapi/button-brands-api-openapi.json#list-brand-details
+  - openapi/button-links-api-openapi.json#generate-a-link
+  - openapi/button-shortlink-api-openapi.json#generate-a-brand-shortlink
+  - openapi/button-shortlink-api-openapi.json#generate-a-shortlink

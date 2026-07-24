@@ -1,0 +1,53 @@
+arazzo: 1.0.1
+info:
+  title: Fetch offers and generate an attributable link
+  version: 1.0.0
+  description: >-
+    Fetch the real-time affiliate offers available to a Publisher user, then generate a fully
+    attributable Button-wrapped link to the chosen Brand destination.
+sourceDescriptions:
+- name: offers-api
+  url: ../openapi/button-offers-api-openapi.json
+  type: openapi
+- name: links-api
+  url: ../openapi/button-links-api-openapi.json
+  type: openapi
+workflows:
+- workflowId: fetchOffersAndGenerateLink
+  summary: Get offers for a user and wrap a destination URL as an attributable link.
+  description: >-
+    Authenticate with your Button API key (HTTP basic, key as username). Retrieve offers, choose a
+    destination, then generate an attributable link carrying your publisher user reference.
+  inputs:
+    type: object
+    properties:
+      destination_url:
+        type: string
+        description: The target Retailer page URL to wrap.
+      btn_pub_user:
+        type: string
+        description: Your stable user identifier, echoed back in transaction webhooks.
+  steps:
+  - stepId: getOffers
+    description: Obtain real-time rates/offers available to the Publisher user.
+    operationId: offers
+    requestBody:
+      contentType: application/json
+      payload:
+        btn_pub_user: $inputs.btn_pub_user
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: generateLink
+    description: Generate a fully attributable Button-wrapped link to the destination.
+    operationId: generate-a-link
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.destination_url
+        experience:
+          btn_pub_user: $inputs.btn_pub_user
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    offers: $steps.getOffers.outputs
+    link: $steps.generateLink.outputs

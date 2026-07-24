@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.usebutton.com/ (reference, changelog, sdk-updates)
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: '4'
+  docs: https://developer.usebutton.com/reference
+  note: REST APIs are pathed under /v1/ (e.g. /v1/brands, /v1/affiliation, /v1/links, /v1/shortlink);
+    the embedded OpenAPI documents report info.version 4.
+sdk_versioning:
+  scheme: semver
+  policy: Button SDKs strictly follow semantic versioning; updates within a major version require
+    no code changes.
+  docs: https://developer.usebutton.com/docs/sdk-updates
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/sunset-header policy is published; SDK major-version bumps are the
+    documented breaking-change mechanism.
+status_page: null
+sla:
+  url: null
+deprecated_operations: []

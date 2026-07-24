@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: derived from openapi/ operations; no official Button MCP server was found in docs, npm (@modelcontextprotocol), or MCP registries as of this probe.
+server:
+  name: button
+  transport: http
+tools:
+- name: list_brand_details
+  description: Retrieve details for the Brands partnered with your organization.
+  source_operation: openapi/button-brands-api-openapi.json#list-brand-details
+- name: list_accounts
+  description: Retrieve the list of billing accounts associated with your organization (one per currency).
+  source_operation: openapi/button-billing-api-openapi.json#list-accounts
+- name: list_transactions
+  description: Retrieve transactions within a single billing account (single currency).
+  source_operation: openapi/button-billing-api-openapi.json#list-transactions
+- name: list_transactions_all
+  description: Retrieve transactions across all billing accounts (all currencies) with cursor pagination.
+  source_operation: openapi/button-billing-api-openapi.json#list-transactions-all
+- name: generate_a_link
+  description: Generate a fully attributable Button-wrapped link to a Retailer page.
+  source_operation: openapi/button-links-api-openapi.json#generate-a-link
+- name: generate_a_brand_shortlink
+  description: Generate a Button-templated shortlink that redirects to a destination URL.
+  source_operation: openapi/button-shortlink-api-openapi.json#generate-a-brand-shortlink
+- name: generate_a_shortlink
+  description: Generate a Button-templated shortlink for an Amazon URL.
+  source_operation: openapi/button-shortlink-api-openapi.json#generate-a-shortlink
+- name: offers
+  description: Obtain real-time affiliate rates/offers available to a Publisher user.
+  source_operation: openapi/button-offers-api-openapi.json#offers

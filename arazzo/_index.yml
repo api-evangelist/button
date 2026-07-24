@@ -1,0 +1,11 @@
+generated: '2026-07-18'
+method: derived
+workflows:
+- file: button-offer-to-link.yml
+  workflowId: fetchOffersAndGenerateLink
+  title: Fetch offers and generate an attributable link
+  summary: Get offers for a user and wrap a destination URL as an attributable Button link.
+- file: button-reconcile-transactions.yml
+  workflowId: reconcileTransactions
+  title: Reconcile affiliate commission transactions
+  summary: List billing accounts and page through all commission transactions across currencies.

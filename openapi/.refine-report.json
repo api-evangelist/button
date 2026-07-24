@@ -1,0 +1,28 @@
+{
+  "provider": "button",
+  "sources": [
+    "button-accounts-api-openapi.yml",
+    "button-brands-api-api-openapi.yml",
+    "button-create-api-openapi.yml",
+    "button-links-api-api-openapi.yml",
+    "button-offers-api-openapi.yml",
+    "button-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "button-accounts-api-openapi.yml",
+    "button-brands-api-api-openapi.yml",
+    "button-create-api-openapi.yml",
+    "button-links-api-api-openapi.yml",
+    "button-offers-api-openapi.yml",
+    "button-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "button-accounts-api-openapi.yml: dangling $ref: #/components/responses/AccountsOK",
+    "button-accounts-api-openapi.yml: dangling $ref: #/components/responses/TransactionsByAccountOK",
+    "button-transactions-api-openapi.yml: dangling $ref: #/components/responses/TransactionsAllOK"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,11 @@
+generated: '2026-07-18'
+method: generated
+skills:
+- file: button-generate-attributable-link.md
+  name: Generate an attributable Button link
+  api: openapi/button-offers-api-openapi.json, openapi/button-links-api-openapi.json
+  operations: [offers, generate-a-link]
+- file: button-reconcile-transactions.md
+  name: Reconcile Button affiliate transactions
+  api: openapi/button-billing-api-openapi.json
+  operations: [list-accounts, list-transactions, list-transactions-all]

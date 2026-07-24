@@ -1,0 +1,37 @@
+arazzo: 1.0.1
+info:
+  title: Reconcile affiliate commission transactions
+  version: 1.0.0
+  description: >-
+    List your Button billing accounts (one per currency), then page through all commission
+    transactions across every account to reconcile affiliate earnings.
+sourceDescriptions:
+- name: billing-api
+  url: ../openapi/button-billing-api-openapi.json
+  type: openapi
+workflows:
+- workflowId: reconcileTransactions
+  summary: List billing accounts and retrieve all commission transactions.
+  description: >-
+    Authenticate with your Button API key (HTTP basic). Enumerate billing accounts, then retrieve
+    all transactions across currencies, following meta.next cursor pagination until it is null.
+  inputs:
+    type: object
+    properties:
+      cursor:
+        type: string
+        description: Optional pagination cursor from a prior meta.next value.
+  steps:
+  - stepId: listAccounts
+    description: Retrieve the billing accounts associated with your organization.
+    operationId: list-accounts
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: listAllTransactions
+    description: Retrieve transactions across all billing accounts (all currencies).
+    operationId: list-transactions-all
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    accounts: $steps.listAccounts.outputs
+    transactions: $steps.listAllTransactions.outputs

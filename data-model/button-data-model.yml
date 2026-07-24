@@ -1,0 +1,57 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/ schemas + id-reference fields
+entities:
+- name: Brand
+  api: openapi/button-brands-api-openapi.json
+  id_field: id
+  id_example: org-3eec44df0966f6f0
+  key_fields: [name, is_live_ready, urls.homepage, apps, supported_hostnames, subdomain, terms_and_conditions]
+- name: Account
+  api: openapi/button-billing-api-openapi.json
+  id_field: id
+  id_example: acc-xxx
+  key_fields: [name, currency, organization]
+- name: Transaction
+  api: openapi/button-billing-api-openapi.json
+  key_fields: [amount, currency, account, line_items, status]
+- name: LineItem
+  api: openapi/button-billing-api-openapi.json
+  key_fields: [identifier, total, amount, quantity]
+- name: Link
+  api: openapi/button-links-api-openapi.json
+  key_fields: [url, experience.btn_pub_user, experience.btn_pub_ref]
+- name: Shortlink
+  api: openapi/button-shortlink-api-openapi.json
+  key_fields: [url]
+- name: Offer
+  api: openapi/button-offers-api-openapi.json
+  key_fields: [rate, brand]
+- name: Organization
+  id_example: org-xxx
+  note: Top-level tenant; Brands and Accounts belong to an Organization.
+relationships:
+- from: Account
+  to: Organization
+  type: belongs_to
+  via: organization
+- from: Account
+  to: Transaction
+  type: has_many
+  via: account_id
+- from: Transaction
+  to: Account
+  type: belongs_to
+  via: account
+- from: Transaction
+  to: LineItem
+  type: has_many
+  via: line_items
+- from: Offer
+  to: Brand
+  type: belongs_to
+  via: brand
+- from: Link
+  to: Brand
+  type: belongs_to
+  via: url (resolves to a supported Brand hostname)

@@ -1,0 +1,74 @@
+generated: '2026-07-18'
+method: generated
+source: https://developer.usebutton.com/docs/button-webhooks + https://developer.usebutton.com/docs/webhook-semantics
+spec_type: AsyncAPI
+asyncapi: 3.0.0
+info:
+  title: Button Transaction Webhooks
+  version: '1.0'
+  description: >-
+    Button delivers signed HTTP POST webhooks to a Publisher-configured URL when a transaction
+    takes place based on traffic the Publisher drove to a Brand. Each delivery carries a
+    Transaction in three possible states. Webhooks are configured in the Button Dashboard and are
+    auto-paused when >10% of the past hour's deliveries fail (min. 5 failures).
+defaultContentType: application/json
+servers:
+  publisher-endpoint:
+    host: your-configured-endpoint.example.com
+    protocol: https
+    description: The HTTPS endpoint the Publisher registers in the Button Dashboard to receive webhooks.
+channels:
+  transactionEvents:
+    address: /
+    description: Publisher-hosted endpoint receiving Button transaction webhook POST requests.
+    messages:
+      transactionEvent:
+        $ref: '#/components/messages/TransactionEvent'
+operations:
+  receiveTransactionEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/transactionEvents'
+    summary: Receive a Button transaction webhook (validated, pending, or declined).
+    messages:
+    - $ref: '#/channels/transactionEvents/messages/transactionEvent'
+components:
+  messages:
+    TransactionEvent:
+      name: TransactionEvent
+      title: Transaction Event
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          Content-Type:
+            type: string
+            const: application/json
+          User-Agent:
+            type: string
+            example: Button Webhooks X.X.X
+          X-Button-Signature:
+            type: string
+            description: HMAC signature used to verify the webhook originated from Button.
+      payload:
+        $ref: '#/components/schemas/TransactionEventPayload'
+  schemas:
+    TransactionEventPayload:
+      type: object
+      required: [request_id, data, id, event_type]
+      properties:
+        request_id:
+          type: string
+          description: Unique identifier of a request attempt, stable across retries of a failed request.
+          example: attempt-XXX
+        id:
+          type: string
+          description: Unique identifier for the webhook event.
+          example: hook-XXX
+        event_type:
+          type: string
+          description: The state the transaction event represents.
+          enum: [tx-validated, tx-pending, tx-declined]
+        data:
+          type: object
+          description: The order details represented as a Transaction.

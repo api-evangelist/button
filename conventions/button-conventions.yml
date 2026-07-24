@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/ + https://developer.usebutton.com/reference + https://developer.usebutton.com/docs/button-webhooks
+authentication:
+  style: http-basic
+  detail: API key supplied as the HTTP basic-auth username with an empty password (curl -u my-api-key:).
+  ref: authentication/button-authentication.yml
+response_envelope:
+  shape: "{ meta: { status, next, previous }, object | objects: ... }"
+  status_field: meta.status
+  success_value: ok
+  ref: errors/button-problem-types.yml
+pagination:
+  style: cursor
+  request_param: cursor
+  response_fields: [meta.next, meta.previous]
+  detail: Follow meta.next until it is null (see List All Transactions).
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented in the API reference.
+versioning:
+  style: uri-path
+  ref: lifecycle/button-lifecycle.yml
+webhooks:
+  signing_header: X-Button-Signature
+  request_id_field: request_id
+  event_id_field: id
+  user_agent: Button Webhooks X.X.X
+  ref: asyncapi/button-webhooks-asyncapi.yml
+rate_limiting:
+  documented: false
+  note: No published rate-limit headers or quotas found in the developer docs.

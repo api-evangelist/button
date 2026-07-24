@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/ + https://www.usebutton.com/support/ (gdpr-notice, ccpa-notice, privacy-policy)
+standards:
+- id: http-basic-auth
+  conforms: true
+  evidence: all APIs declare securitySchemes type http scheme basic (API key as basic-auth username)
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in any spec
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a Button {meta:{status}} envelope, not application/problem+json
+- id: cursor-pagination
+  conforms: true
+  evidence: billing-api responses expose meta.next / meta.previous cursors
+- id: json-api
+  conforms: false
+- id: fhir-r4
+  conforms: false
+- id: scim2
+  conforms: false
+- id: gdpr
+  conforms: true
+  evidence: published GDPR Notice at https://www.usebutton.com/support/gdpr-notice
+- id: ccpa
+  conforms: true
+  evidence: published CCPA Notice at https://www.usebutton.com/support/ccpa-notice

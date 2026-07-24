@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Button Shortlink API
+  version: 1.0.0
+extends: openapi/button-shortlink-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-apievangelist-auth: http-basic (API key as basic-auth username)
+    x-apievangelist-pagination: cursor (meta.next / meta.previous)
+    x-apievangelist-webhooks: asyncapi/button-webhooks-asyncapi.yml
+- target: $
+  update:
+    x-apievangelist-artifacts:
+      authentication: authentication/button-authentication.yml
+      conventions: conventions/button-conventions.yml
+      errors: errors/button-problem-types.yml
+      data-model: data-model/button-data-model.yml

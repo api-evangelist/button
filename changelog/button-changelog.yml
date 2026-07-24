@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.usebutton.com/changelog
+scheme: dated-entries
+current_version: null
+note: Button publishes a dated developer changelog on the docs portal; the most recent public
+  entries captured below. SDK release notes track separately via GitHub releases and semver.
+entries:
+- title: Merchant Library Swift Package Manager support
+  url: https://developer.usebutton.com/changelog/merchant-library-support-for-swift-package-manager
+  breaking: false
+  additions: true
+  highlights:
+  - Button Merchant Library available on Swift Package Manager as of version 1.3.1, joining
+    CocoaPods and Carthage.
+- title: Welcome to the new Button Developers
+  url: https://developer.usebutton.com/changelog/new-developersusebuttoncom
+  breaking: false
+  additions: true
+  highlights:
+  - Relaunched developer portal with full-site search across API reference, guides, and knowledgebase.
+  - Introduced the developer changelog.

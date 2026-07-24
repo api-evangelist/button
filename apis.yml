@@ -1,8 +1,13 @@
 aid: button
 name: Button
-description: Button is a company surfaced as a portfolio company of 500-global, dcm-ventures, redpoint-ventures
-  and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the
-  enrichment pipeline.
+description: Button is a mobile commerce and affiliate attribution platform connecting publishers,
+  retailers, advertisers, and creators. Its AI-driven intelligence platform identifies and routes
+  users to the highest-converting destination, powering smart routing, in-app priority, privacy-safe
+  first-party attribution and analytics, and the CuratedBy Button publisher tool that combines
+  affiliate, retail media, and seller budgets. For developers, Button exposes REST APIs for brand
+  details, real-time affiliate offers, attributable link and shortlink generation, and billing and
+  commission transaction reporting, plus native iOS and Android SDKs, merchant libraries, and signed
+  transaction webhooks that close the loop on the user's commerce journey.
 url: https://raw.githubusercontent.com/api-evangelist/button/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,19 +15,169 @@ x-backed-by:
 - 500-global
 - dcm-ventures
 - redpoint-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: pipeline-enriched
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://github.com/button.png
 tags:
-- Company
-apis: []
+- Commerce
+- Affiliate Marketing
+- Mobile
+- Attribution
+- Deep Linking
+- Retail Media
+- Analytics
+- Advertising
+- Links
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: button:button-accounts-api
+  name: Button Accounts API
+  description: The Accounts API from Button — 2 operation(s) for accounts.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/button-accounts-api-openapi.yml
+- aid: button:button-brands-api-api
+  name: Button Brands Api API
+  description: The Brands Api API from Button — 1 operation(s) for brands api.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Brands Api
+  properties:
+  - type: OpenAPI
+    url: openapi/button-brands-api-api-openapi.yml
+- aid: button:button-create-api
+  name: Button Create API
+  description: The Create API from Button — 2 operation(s) for create.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Create
+  properties:
+  - type: OpenAPI
+    url: openapi/button-create-api-openapi.yml
+- aid: button:button-links-api-api
+  name: Button Links Api API
+  description: The Links Api API from Button — 1 operation(s) for links api.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Links Api
+  properties:
+  - type: OpenAPI
+    url: openapi/button-links-api-api-openapi.yml
+- aid: button:button-offers-api
+  name: Button Offers API
+  description: The Offers API from Button — 1 operation(s) for offers.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Offers
+  properties:
+  - type: OpenAPI
+    url: openapi/button-offers-api-openapi.yml
+- aid: button:button-transactions-api
+  name: Button Transactions API
+  description: The Transactions API from Button — 1 operation(s) for transactions.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/button-transactions-api-openapi.yml
 common:
 - type: Website
-  url: https://mysteryscience.com
+  url: https://www.usebutton.com
+- type: DeveloperPortal
+  url: https://developer.usebutton.com
+- type: Documentation
+  url: https://developer.usebutton.com/docs/publishers-getting-started
+- type: APIReference
+  url: https://developer.usebutton.com/reference
+- type: GettingStarted
+  url: https://developer.usebutton.com/docs/publishers-getting-started
+- type: Blog
+  url: https://www.usebutton.com/blog
+- type: GitHubOrganization
+  url: https://github.com/button
+- type: Support
+  url: https://www.usebutton.com/contact-us
+- type: Security
+  url: https://www.usebutton.com/support/security
+- type: TermsOfService
+  url: https://www.usebutton.com/support/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.usebutton.com/support/privacy-policy
+- type: Compliance
+  url: https://www.usebutton.com/support/gdpr-notice
+- type: ChangeLog
+  url: https://developer.usebutton.com/changelog
+- type: LLMsTxt
+  url: llms/button-llms.txt
+- type: Packages
+  url: packages/button-packages.yml
+- type: SDKs
+  url: packages/button-packages.yml
+- type: Authentication
+  url: authentication/button-authentication.yml
+- type: DomainSecurity
+  url: security/button-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/button-vulnerability-disclosure.yml
+- type: AgenticAccess
+  url: agentic-access/button-agentic-access.yml
+- type: MCPServer
+  url: mcp/button-mcp.yml
+- type: Conventions
+  url: conventions/button-conventions.yml
+- type: Lifecycle
+  url: lifecycle/button-lifecycle.yml
+- type: Conformance
+  url: conformance/button-conformance.yml
+- type: ErrorCatalog
+  url: errors/button-problem-types.yml
+- type: DataModel
+  url: data-model/button-data-model.yml
+- type: AsyncAPI
+  url: asyncapi/button-webhooks-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/button-webhooks-asyncapi.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/button-billing-api-overlay.yaml
+- type: Arazzo
+  name: Fetch offers and generate an attributable link
+  url: arazzo/button-offer-to-link.yml
+- type: Arazzo
+  name: Reconcile affiliate commission transactions
+  url: arazzo/button-reconcile-transactions.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
